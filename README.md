@@ -10,3 +10,5 @@ npm run start
 ```js
 npm run build
 ```
+一键部署
+sh ./deploy.sh

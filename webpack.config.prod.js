@@ -1,9 +1,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV === "production";
-console.log(devMode);
+
 module.exports = {
+	mode:"development",
 	entry:"./src/index.js",
 	devServer:{
 		contentBase:"./dist"
@@ -17,17 +17,14 @@ module.exports = {
 		rules:[
 			{
 				test:/\.css$/i,
-				use:[
-					devMode ? MiniCssExtractPlugin.loader : "style-loader",
-					
-					"css-loader" ]
+				use:[ MiniCssExtractPlugin.loader, "css-loader" ]
 			}
 		]
 	},
-	plugins:[
+	plugins:[ 
 		new MiniCssExtractPlugin({
 			filename:"[name].[contenthash].css"
-		}),
+		}), 
 		new HtmlWebpackPlugin({
 			title:"webpack生成页",
 			template:"./src/index.html"
